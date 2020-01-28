@@ -36,13 +36,17 @@ https://arrow.tudublin.ie/cgi/viewcontent.cgi?article=1040&context=scschcomdis p
 
 ### Base models
 #### `project.ipynb`
-When the categorical variables were dropped (no consideration of team composition), Logistic regression, linear support vector machine, and ensemble model worked best with 65-66% accuracy. When the categorical variables were included (one hot encoded), the same three models performed equally well with around 67-68% accuracy. Including the categorical variables certainly increased the accuracy; however, not as much as I had anticipated. There is certainly room to improve in developing a model that can better understand the categorical variables.
+When the categorical variables were dropped (no consideration of team composition), Logistic regression, linear support vector machine, and ensemble model worked best with 65-66% accuracy. When the categorical variables were included (one hot encoded), the same three models performed equally well with around 67-68% accuracy. Including the categorical variables certainly increased the accuracy; however, not as much as I had anticipated. There is certainly room to improve in developing a model that can better understand the categorical variables. The fact that logistic regression is achieving similar to if not higher accuracy than the other models means that the relationship between the variables is linear (the model does not yet understand the idea of counter cycles).
 
 ## Similar Problems: Best of Rock Paper Scissors 
 #### `rock_paper_scissors.ipynb`
 As mentioned earlier, I anticipate the brawler match ups to be highly predictive of the outcome of the game. The wheel of brawlers countering brawlers is similar to rock paper scissors in that there is no definitive best choice to make between rock, paper, and scissor. By trying to solve this problem, I hope to get an understanding of which model has a high chance of working properly on my problem. The exact details can be found in `rock_paper_scissors.ipynb`.
 
-As a summary of the results, I found that support vector machines (SVMs) worked well; however, they were limited by their computational complexity. It would simply take too long to train some the SVMs on anything more than 100,000 instances of 96 features. Neural nets seemed to be the optimal model for the task because they were not limited by the size of the data set. Thus they seemed to be the optimal model for my project which I planned to artificially enlarge the number of instances by 72 giving me more than 1.5 million training instances. Because I was using one hot encoding, my data set had over 250 features.
+As a summary of the results, I found that support vector machines (SVMs) worked well; however, they were limited by their computational complexity. It would simply take too long to train some the SVMs on anything more than 100,000 instances of 96 features. Neural nets seemed to be the optimal model for the task because they were not limited by the size of the data set.
 
 ## Training my final model
 #### `project.ipynb`
+With the baseline measurements made, the goal was to make predictions greater than 68%. I artificially enlarge the number of instances by 72 giving me more than 1.5 million training instances with over 250 features. SVMs took too long to run to train on this dataset; therefore, I switched to a neural net. I tried many neural nets with various numbers of hidden layers and nodes per layer.
+
+In summary, I found that with 1.5 million training instances, neural nets tended to overfit the model within the first 5 epochs no matter what architecture I chose (including just having one layer of inputs and one layer of outputs -> this is just logistic regression).
+
