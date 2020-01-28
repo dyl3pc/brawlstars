@@ -2,10 +2,12 @@
 ## Intro
 Brawl Stars is a mobile video game developed by Supercell (same developers of Clash Royale and Clash of Clans). I aimed to create a machine learning model that could predict the outcome of games given a set of features associated with the players in the game. I was particularly interested in the idea of finding a best team composition. I take a short detour on what appears to be a similar problem: best of rock paper scissors game. Overall, I gained experience collecting my own data using an asynchronous client, pandas for data cleaning, and training various machine learning algorithms using Scikit-learn and TensorFlow-Keras.
 
-## Data Collection (`get_data.ipynb`)
+## Data Collection
+#### `get_data.ipynb`
 In 'client.py', I created an asynchronous client to collect game data from the Brawl Stars official API (developer.brawlstars.com). The Brawl Stars API only has a list of recently played matches by player. So starting from the top 200 players as a seed, I recursively added players to pool of player ids from which I subsequently fetched all of their recently played games. All the data was saved into an sqlite3 database which has approximately 4 million games and information on 350 thousand players.
 
-## Data Cleaning (`clean_data.ipynb`)
+## Data Cleaning
+#### `clean_data.ipynb`
 Within Brawl Stars, there are numerous game modes each with different rules. In addition, there are different maps for each mode. I did not expect models to generalize between the game modes or between maps, so I filtered the data for the most popular game mode and map, which was Brawl Ball played on Sunny Soccer. Subsequent filtering was done to only include high level games which were determined based on match making rating (MMR). Higher level games were chosen for ease of predictability (there is a higher chance of mismatch in MMR) and for more interesting results. I planned to try to answer questions like: how much skill is involved, what are the best characters in the game, etc. These kinds of questions need high level game play. After filtering, there were 30 thousand unique games.
 
 ### Features
@@ -29,12 +31,15 @@ https://hackernoon.com/league-of-legends-predicting-wins-in-champion-select-with
 Sport games are vastly more complex than simple video game prediction. Doing a quick search I found that the best models have about a 60-70% accuracy.
 https://www.sciencedirect.com/science/article/pii/S2210832717301485
 
-### Base models (beginning of `project.ipynb`)
+### Base models
+#### `project.ipynb`
 When the categorical variables were dropped (no consideration of team composition), Logistic regression, linear support vector machine, and ensemble model worked best with 65-66% accuracy. When the categorical variables were included (one hot encoded), the same three models performed equally well with around 67-68% accuracy. Including the categorical variables certainly increased the accuracy; however, not as much as I had anticipated. There is certainly room to improve in developing a model that can better understand the categorical variables.
 
-## Similar Problems: Best of Rock Paper Scissors (`rock_paper_scissors.ipynb`)
+## Similar Problems: Best of Rock Paper Scissors 
+#### `rock_paper_scissors.ipynb`
 As mentioned earlier, I anticipate the brawler match ups to be highly predictive of the outcome of the game. The wheel of brawlers countering brawlers is similar to rock paper scissors in that there is no definitive best choice to make between rock, paper, and scissor. By trying to solve this problem, I hope to get an understanding of which model has a high chance of working properly on my problem. The exact details can be found in `rock_paper_scissors.ipynb`.
 
 As a summary of the results, I found that support vector machines (SVMs) worked well; however, they were limited by their computational complexity. It would simply take too long to train some the SVMs on anything more than 100,000 instances of 96 features. Neural nets seemed to be the optimal model for the task because they were not limited by the size of the data set. Thus they seemed to be the optimal model for my project which I planned to artificially enlarge the number of instances by 72 giving me more than 1.5 million training instances. Because I was using one hot encoding, my data set had over 250 features.
 
-## Training my final model (`project.ipynb`)
+## Training my final model
+#### `project.ipynb`
