@@ -28,8 +28,11 @@ League of Legends is a popular 5 vs 5 video game which displays some of the same
 https://hackernoon.com/league-of-legends-predicting-wins-in-champion-select-with-machine-learning-6496523a7ea7
 
 #### Sports
-Sport games are vastly more complex than simple video game prediction. Doing a quick search I found that the best models have about a 60-70% accuracy.
-https://www.sciencedirect.com/science/article/pii/S2210832717301485
+Sport games are vastly more complex than simple video game prediction. Doing a quick search I found that the best models have about a 60-70% accuracy. Surprisingly, the paper found that Logistic Regression performed best on their dataset. 
+
+![Basketball predictions](img/basketball.png)
+
+https://arrow.tudublin.ie/cgi/viewcontent.cgi?article=1040&context=scschcomdis pg. 73
 
 ### Base models
 #### `project.ipynb`
