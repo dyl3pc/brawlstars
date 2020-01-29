@@ -68,4 +68,4 @@ This suggests that slight differences in MMR are the biggest predictor of game o
 ### Future Directions
 Overall there is still a statistically significant gap between my manual predictions and the predictions made by my models; therefore, there is certainly room for improvement. One such improvement might be to train a neural net as depicted in the figure below. A neural net could be trained separately based off brawler compositions on data where MMR is statistically different between the teams. Then this neural net would replace Hidden 1 and Hidden 2 as depicted in the figure which is connected to the team composition features labeled Input B. Input A would be the trophy information. This kind of architecture may work better because the data used to train the neural net for brawler compositions will not be “confused” by data that has no association with brawler compositions (a.k.a. data that is determined only from MMR).
 
-![Basketball predictions](img/nn.png)
+![Basketball predictions](img/nn.png | width = 200)
